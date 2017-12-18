@@ -61,12 +61,11 @@ inet6 fe80::20c:29ff:fe92:cdd7/64 scope link
    valid_lft forever preferred_lft forever
 ```
   * `lo` is de loopback interface (127.0.0.1), dus **nooit** de juiste!
-  * `DOWN` kan betekenen:
-     * disabled --> `ip link set <iface> up`
-     * `NO-CARRIER` op dezelfde regel --> interface up maar kabel niet aangesloten
-  * `LOWER_UP` --> kabel OK (layer 1+2)
-  * `UP` --> IP (layer 3) OK
-
+  * `LOWER_UP` --> kabel OK (layer 1)
+  * `UP` --> layer 2 OK
+  * `state DOWN` verder op de regel: interface disabled --> `ip link set <iface> up`
+  * `NO-CARRIER` --> interface up maar kabel niet (goed) aangesloten
+  
 ## Tijdelijke configuratie: weg na reboot
 
 * `<iface>` := interface (netwerkkaart) --> zie `ip link` voor lijst, bv.: `eth0`, `wlan0`, `eno1`, `ens33`, `ens0p8`, ...
@@ -90,7 +89,7 @@ iface <iface> inet static # statisch
   ```
 * Zie `man interfaces` voor meer syntax/opties!
 * Nieuwe configuratie toepassen: `systemctl restart networking` of `ip link set <iface> down && ip link set <iface> up`
-* DNS: servers toevoegen/aanpassen in `\etc\resolve.conf`
+* DNS: servers toevoegen/aanpassen in `\etc\resolv.conf`
 
 ### Raspbian (dhcpcd)
 
