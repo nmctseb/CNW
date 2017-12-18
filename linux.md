@@ -100,24 +100,24 @@ Bestand: `/etc/dhcpcd/dhcpcd.conf`
 * `man dhcpcd.conf` voor meer syntax/opties
 
 ```console
-	# dynamisch: geen verdere config nodig
+# dynamisch: geen verdere config nodig
 
-	# static configuration:
-	interface <iface>
-	 static ip_address=<ip_addr>
-	 static routers=<ip_host>   # default gw!
-	 # static IP --> ook altijd static DNS!
-	 static domain_name_servers=<ip_host> # meerdere scheiden door spaties
+# static configuration:
+interface <iface>
+ static ip_address=<ip_addr>
+ static routers=<ip_host>   # default gw!
+ # static IP --> ook altijd static DNS!
+ static domain_name_servers=<ip_host> # meerdere scheiden door spaties
 
-	# fallback profile
-	# enkel actief in geval DHCP faalt
-	# (zoals "Alternate configuration" in Windows)
-	profile <profile_name>
-	 static ip_address=<ip_addr>
-	 # ... verdere opties zoals bij static config
+# fallback profile
+# enkel actief in geval DHCP faalt
+# (zoals "Alternate configuration" in Windows)
+profile <profile_name>
+ static ip_address=<ip_addr>
+ # ... verdere opties zoals bij static config
 
-	interface <iface>
-	 fallback <profile_name>
+interface <iface>
+ fallback <profile_name>
 ```
 ## Routing
 * routetabel tonen: `ip route`
