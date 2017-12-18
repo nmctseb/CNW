@@ -309,14 +309,14 @@ Start een upgrade best in een `screen` om problemen te vermijden als je SSH-verb
 ## Keyboard layout 
 * Ofwel `dpkg-reconfigure keyboard-configuration`
 * Ofwel rechtstreeks `/etc/defaults/keyboard` aanpassen:
-	```console
-		XKBMODEL="pc105"
-		XKBLAYOUT="be"
-		XKBVARIANT=""
-		XKBOPTIONS=""
+```bash
+XKBMODEL="pc105"
+XKBLAYOUT="be"
+XKBVARIANT=""
+XKBOPTIONS=""
 
-		BACKSPACE="guess"
-	```
+BACKSPACE="guess"
+```
 * Nieuwe config toepassen met `sudo setupcon`
 * Voor de GUI:
   * `setxkbmap be`
