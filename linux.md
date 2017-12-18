@@ -99,7 +99,7 @@ Bestand: `/etc/dhcpcd/dhcpcd.conf`
 * zie commentaar in het bestand zelf voor voorbeelden
 * `man dhcpcd.conf` voor meer syntax/opties
 
-```console
+```bash
 # dynamisch: geen verdere config nodig
 
 # static configuration:
