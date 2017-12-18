@@ -45,7 +45,7 @@ Adressen:
 
 # IP Configuratie
 Configuratie tonen: `ip addr` (`ifconfig` is achterhaald!)
-```console
+```bash
 $ ip addr
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1
 link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
@@ -217,29 +217,29 @@ Wachtwoord hashen (enkel voor WPA-Enterprise): `echo -n "P@ssw0rd" | iconv -t ut
   * uitzetten met `rfkill unblock <iface>`
 
 # Firewall
-      ufw [--dry-run] enable|disable|reload
+ufw [--dry-run] enable|disable|reload
 
-       ufw [--dry-run] default allow|deny|reject [incoming|outgoing|routed]
+ufw [--dry-run] default allow|deny|reject [incoming|outgoing|routed]
 
-       ufw [--dry-run] logging on|off|LEVEL
+ufw [--dry-run] logging on|off|LEVEL
 
-       ufw [--dry-run] reset
+ufw [--dry-run] reset
 
-       ufw [--dry-run] status [verbose|numbered]
+ufw [--dry-run] status [verbose|numbered]
 
-       ufw [--dry-run] show REPORT
+ufw [--dry-run] show REPORT
 
-       ufw  [--dry-run] [delete] [insert NUM] allow|deny|reject|limit [in|out] [log|log-all] [ PORT[/PROTOCOL] | APPNAME ] [comment COMMENT]
+ufw  [--dry-run] [delete] [insert NUM] allow|deny|reject|limit [in|out] [log|log-all] [ PORT[/PROTOCOL] | APPNAME ] [comment COMMENT]
 
-       ufw [--dry-run] [rule] [delete] [insert NUM] allow|deny|reject|limit [in|out [on INTERFACE]] [log|log-all] [proto  PROTO‐
-       COL] [from ADDRESS [port PORT | app APPNAME ]] [to ADDRESS [port PORT | app APPNAME ]] [comment COMMENT]
+ufw [--dry-run] [rule] [delete] [insert NUM] allow|deny|reject|limit [in|out [on INTERFACE]] [log|log-all] [proto  PROTO‐
+COL] [from ADDRESS [port PORT | app APPNAME ]] [to ADDRESS [port PORT | app APPNAME ]] [comment COMMENT]
 
-       ufw  [--dry-run] route [delete] [insert NUM] allow|deny|reject|limit [in|out on INTERFACE] [log|log-all] [proto PROTOCOL]
-       [from ADDRESS [port PORT | app APPNAME]] [to ADDRESS [port PORT | app APPNAME]] [comment COMMENT]
+ufw  [--dry-run] route [delete] [insert NUM] allow|deny|reject|limit [in|out on INTERFACE] [log|log-all] [proto PROTOCOL]
+[from ADDRESS [port PORT | app APPNAME]] [to ADDRESS [port PORT | app APPNAME]] [comment COMMENT]
 
-       ufw [--dry-run] delete NUM
+ufw [--dry-run] delete NUM
 
-       ufw [--dry-run] app list|info|default|update
+ufw [--dry-run] app list|info|default|update
 
   
 # Software
