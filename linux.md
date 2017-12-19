@@ -125,7 +125,7 @@ interface <iface>
   * 1 default gw
   * 1 route naar elk verbonden netwerk (`scope link`)
   * geen 'zombie' routes (bv. naar oud subnet na wijziging IP)
-* toevoegen/verwijderen: `ip route {add|del} default via <ip_host> dev <iface>` (tijdelijk: permanent zie IP configuratie!)
+* default gateway toevoegen/verwijderen: `ip route {add|del} default via <ip_host> dev <iface>` (tijdelijk: permanent zie IP configuratie!)
 
 # Wireless (wpa_supplicant)
 ## Open netwerk
@@ -135,7 +135,7 @@ Verbinden: `iw <iface> connect <SSID>`
 ### Configuratiebestand: `/etc/wpa_supplicant/wpa_supplicant.conf`
 
 * zie `man wpa_supplicant.conf` voor meer opties & voorbeelden
-  * **let op: service `wpa_supplicant` vs. configuratie `wpa_supplicant.comf` - allebei hebben een man-page!**
+  * **let op: service `wpa_supplicant` vs. configuratie `wpa_supplicant.conf` - allebei hebben een man-page!**
 * nog meer voorbeelden in `/usr/share/doc/wpa_supplicant/examples`
 * genereer een kant-en-klaar netwerkblok voor WPA-PSK (personal) met `wpa_passphrase '<SSID>' '<P@ssw0rd>'` (quotes zijn nodig in geval van spaties en/of speciale karakters!)
 ```bash
