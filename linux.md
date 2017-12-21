@@ -263,10 +263,12 @@ Wachtwoord hashen (enkel voor WPA-Enterprise): `echo -n "P@ssw0rd" | iconv -t ut
     - [ ] Raspbian: **enkel** `/etc/dhcpcd/dhcpcd.conf` voor alle instellingen
 - [ ] Activeer nieuwe config:
     - [ ] `systemctl restart networking.service`
+	- [ ] `ip link set <iface> down && ip link set <iface> up`
+	- soms moet je allebei proberen voor het werkt
 - [ ] Wireless?
   - `/etc/wpa_supplicant/wpa_supplicant.conf` voor configuratie en `wpa_cli` voor beheer
   - gebruik wpa_passphrase om netwerkconfig te genereren voor WPA-personal:
-  ```bash
+  ```console
   # sudo -i
   $ wpa_passphrase <SSID> <passphrase> >> /etc/wpa_supplicant/wpa_supplicant.conf
   $ logout
