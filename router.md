@@ -30,13 +30,13 @@ Oplossing:
 - Als het externe IP 0.0.0.0 is, is de internetverbinding niet OK en zul je dus nooit kunnen surfen op het netwerk achter de router!
 
 # Port forwarding
-## Opzet
+## Achtergrond
 De breedbandrouter vertaalt *uitgaande* netwerkverbindingen naar het (publieke IP) op de externe interface en stuurt ze door. Door de verbindingen bij te houden in het tabel, kan hij achteraf het antwoord opnieuw naar de juiste PC op het interne net sturen ([NAT](https://en.wikipedia.org/wiki/Network_address_translation)). 
 
 
-*Inkomende* verbindingen zijn dus niet mogelijk: als er een ongevraagd pakket toekomt op de externe interface, weet de router immers niet naar waar het verder te sturen. Om een dienst (bv. Webserver) op het internet net toegankelijk te maken van buitenaf moeten we dit instellen op de router: *Port Forwarding*. 
+*Inkomende* verbindingen zijn dus niet mogelijk: als er een ongevraagd pakket toekomt op de externe interface, weet de router immers niet naar waar het verder te sturen. Om een dienst (bv. webserver) op het interne net toegankelijk te maken van buitenaf moeten we dit instellen op de router: *Port Forwarding*. 
 
-## Port fowarding
+## Opzet
 Stel dat je een *intern* netwerk 192.168.1.0/24 hebt, achter een breedbandrouter met *extern* adres 120.143.23.56. Op het netwerk staat een Linux-PC met adres 192.168.1.5, waarop een webserver geïnstalleerd is die luistert op poort 80. Die wil je bereikbaar maken van buitenaf op poort 8080. 
 
 Dat wordt dan (instellen bij *Applications & Gaming* --> *Single port forward*)
@@ -44,7 +44,7 @@ Dat wordt dan (instellen bij *Applications & Gaming* --> *Single port forward*)
 > - *External port*: 8080
 > - *Internal port*: 80
 > - *To IP address*: 192.168.1.5
-> - *Enable*: Aangevinkt
+> - *Enable*: [x]
 
-Daarna kan je de website bereiken van buiten door naar het *externe* IP van je router te surfen. Een andere poort dan 80 moet je meegeven na een dubbelpunt achteraan het adres.
+Daarna kan je naar van **buiten** het netwerk naar de website surfen op het **externe** IP van de router. Een andere poort dan 80 moet je meegeven na een dubbelpunt achteraan het adres:
 > http://120.143.23.56:8080
