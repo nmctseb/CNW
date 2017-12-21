@@ -140,7 +140,7 @@ Verbinden: `iw <iface> connect <SSID>`
   }
 ```
 
-Wachtwoord hashen (enkel voor WPA-Enterprise): `echo -n "P@ssw0rd" | iconv -t utf16le | openssl md4`
+Wachtwoord hashen (enkel voor WPA-Enterprise): `echo -n 'P@ssw0rd' | iconv -t utf16le | openssl md4`
 
 **!!!Let op voor wachtwoorden in command history!!!**
 * `history`: weergeven
@@ -176,6 +176,11 @@ Wachtwoord hashen (enkel voor WPA-Enterprise): `echo -n "P@ssw0rd" | iconv -t ut
 * met `dhclient -d <iface>` kan je testen of DHCP lukt (afsluiten met `Ctrl+C`)
 
 ## Wireless
+### Hardware
+- devices: `iw dev`
+- interfaces: `iw phy`
+- verbinding maken met **onbeveiligd** netwerk: `iw <iface> connect <SSID>`
+
 ### `wpa_supplicant`
 * check of de service draait: `ps aux | grep wpa`
 * zo niet --> wellicht fout in Configuratiebestand

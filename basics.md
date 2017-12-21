@@ -3,6 +3,7 @@
 * `man <command>`: hulp over commando `command`
 * `man <filename>`: hulp over configuratiebestand `filename`
 * `man -k <keyword>`: zoeken naar onderwerp `keyword`
+* `help <command>`: hulp over ingebouwde commando's van de shell
 
 ## Navigeren in man-pages
 * zoeken: `/word` zoekt naar `word` (bevestigen met Enter)
