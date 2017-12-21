@@ -245,25 +245,25 @@ Wachtwoord hashen (enkel voor WPA-Enterprise): `echo -n "P@ssw0rd" | iconv -t ut
 
 # Checklist Linux Networking
 
-[ ] Bepaal de juiste interface `<iface>`
+- [ ] Bepaal de juiste interface `<iface>`
 - *enkel* op Raspbian kan je er vanuit gaan dat de ingebouwde NIC `eth0` is en de ingebouwde WiFi `wlan0`
 - check anders de output van `ip link` of `ip addr` voor een overzicht 
-[ ] Breng de interface up (check: `state UP` in de output van `ip link`)
-[ ] DHCP of static?
-    [ ] test of DHCP werkt met `dhclient -d <iface>`
-    [ ] verzamel nodige gegevens voor static config:
-		[ ] (host-) IP-adres 
-		[ ] subnet mask OF CIDR prefix length (/xx)
-		[ ] default gateway voor alles buiten het lokale subnet
-		[ ] DNS servers voor naamresolutie
+- [ ] Breng de interface up (check: `state UP` in de output van `ip link`)
+- [ ] DHCP of static?
+    - [ ] test of DHCP werkt met `dhclient -d <iface>`
+    - [ ] verzamel nodige gegevens voor static config:
+		- [ ] (host-) IP-adres 
+		- [ ] subnet mask OF CIDR prefix length (/xx)
+		- [ ] default gateway voor alles buiten het lokale subnet
+		- [ ] DNS servers voor naamresolutie
 			- ofwel kan je het IP van de router gebruiken
 		    - ofwel de DNS-servers die de router zélf mee kreeg: check pagina 'Status' op de webinterface
-[ ] Debian of Raspbian?
-    [ ] Debian: `/etc/netwrok/interfaces` voor IP en `/etc/resolv.conf` voor DNS
-    [ ] Raspbian: **enkel** `/etc/dhcpcd/dhcpcd.conf` voor alle instellingen
-[ ] Activeer nieuwe config:
-    [ ] `systemctl restart networking.service`
-[ ] Wireless?
+- [ ] Debian of Raspbian?
+    - [ ] Debian: `/etc/netwrok/interfaces` voor IP en `/etc/resolv.conf` voor DNS
+    - [ ] Raspbian: **enkel** `/etc/dhcpcd/dhcpcd.conf` voor alle instellingen
+- [ ] Activeer nieuwe config:
+    - [ ] `systemctl restart networking.service`
+- [ ] Wireless?
   - `/etc/wpa_supplicant/wpa_supplicant.conf` voor configuratie en `wpa_cli` voor beheer
   - gebruik wpa_passphrase om netwerkconfig te genereren voor WPA-personal:
   ```bash
