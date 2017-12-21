@@ -286,7 +286,7 @@ Wachtwoord hashen (enkel voor WPA-Enterprise): `echo -n "P@ssw0rd" | iconv -t ut
 5. [ ] Activeer nieuwe config:
     - [ ] `systemctl restart networking.service`
 	- [ ] `ip link set <iface> down && ip link set <iface> up`
-	- soms moet je allebei proberen voor het werkt
+  - soms moet je allebei proberen voor het werkt
 6. [ ] Wireless?
   - `/etc/wpa_supplicant/wpa_supplicant.conf` voor configuratie en `wpa_cli` voor beheer
   - gebruik wpa_passphrase om netwerkconfig te genereren voor WPA-personal:
@@ -301,7 +301,7 @@ Wachtwoord hashen (enkel voor WPA-Enterprise): `echo -n "P@ssw0rd" | iconv -t ut
   > status
   > quit
   ```
-    - makkelijker op deze manier met `sudo -i` 
+	- makkelijker op deze manier met `sudo -i` 
 	- let op dubbele >> in commando of je overschrijft heel het bestand!!!
 	- juiste interface niet vergeten meegeven aan `wpa_cli`
 	- voeg `priority=1` toe aan netwerkblokje om het voorrang te geven t.o.v. NMCT-RPi
