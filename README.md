@@ -13,3 +13,6 @@ Adressen:
 * `ip_prefix`: een IP-**netwerkadres in CIDR-notatie** (bv. 192.168.1.0/24)
 
 *De meeste commando's vereisen uiteraard root/sudo - use your common sense & RTFE!!!*
+
+## Stop the beeping
+`setterm --blength 0`
