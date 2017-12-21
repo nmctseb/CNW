@@ -6,6 +6,7 @@ Parameters:
 
 Adressen:
 * `ip_host`: een IP-**hostadres** (bv. 192.168.1.1)
+* `ip_mask`: een **subnet mask** (bv. 255.255.192.0)
 * `ip_addr`: een IP-**hostadres+mask in CIDR-notatie** (bv. 192.168.1.1/24)
 * `ip_prefix`: een IP-**netwerkadres in CIDR-notatie** (bv. 192.168.1.0/24)
 
@@ -44,7 +45,18 @@ Adressen:
     * veel programma's hebben eigen log --> `ls -l /var/log`
 
 # IP Configuratie
-Configuratie tonen: `ip addr` (`ifconfig` is achterhaald!)
+## `ip`: (bijna)-alles-in-een netwerktool 
+**`ifconfig` is achterhaald! Werkt bv. op Debian niet meer goed**
+* `ip link`: interfaces tonen, up/down brengen, ...
+* `ip addr`: IP adres tonen, toevoegen/verwijderen, ...
+* `ip route`: routetabel tonen, **default gw tonen/instellen**, routes toevoegen/verwijderen (normaal niet nodig op clients)
+*  ...en nog veel meer: `ip help` voor nog meer 'contexts'
+
+Naast de man-page kan je argument `help` gebruiken, bv: `ip help`, `ip addr help`, `ip route help`... 
+
+**Uitzondering: DHCP kan niet met `ip` --> `dhclient <iface>`**
+
+Voorbeeld:
 ```bash
 $ ip addr
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1
@@ -60,6 +72,7 @@ inet 192.168.23.129/24 brd 192.168.23.255 scope global ens33
 inet6 fe80::20c:29ff:fe92:cdd7/64 scope link
    valid_lft forever preferred_lft forever
 ```
+  * je ziet hier 2 interfaces: `lo` en `ens33`
   * `lo` is de loopback interface (127.0.0.1), dus **nooit** de juiste!
   * `LOWER_UP` --> kabel OK (layer 1)
   * `UP` --> layer 2 OK
@@ -79,17 +92,26 @@ inet6 fe80::20c:29ff:fe92:cdd7/64 scope link
 ### Debian/Traditional Linux
 Configuratiebestand: `/etc/network/interfaces`
 ```bash
+# deze regel altijd:
 auto <iface>              # automatisch up bij opstarten
 
-iface <iface> inet dhcp   # dynamisch adres
+# en dan ofwel...
 
-iface <iface> inet static # statisch
- address <ip_addr>
- gateway <ip_host>          # default gateway niet vergeten!
-  ```
-* Zie `man interfaces` voor meer syntax/opties!
-* Nieuwe configuratie toepassen: `systemctl restart networking` of `ip link set <iface> down && ip link set <iface> up`
+# dynamisch adres
+iface <iface> inet dhcp   
+
+# statisch adres
+iface <iface> inet static 
+ address <ip_addr>		  # Je kan ofwel CIDR-notatie (met /xy achter het IP) gebruiken
+ netmask <ip_mask>		  # ofwel de subnet mask instellen met deze regel
+ gateway <ip_host>        # default gateway niet vergeten!
+# verdere opties zoals network, broadcast zijn overbodig want kunnen berekend worden uit address + mask
+```
+* Blijf van de config voor de loopback `lo` af!
+* Zie `man interfaces` voor meer syntax/opties
+* Nieuwe configuratie toepassen: `systemctl restart networking` of `ip link set <iface> down && ip link set <iface> up` --> **soms allebei: trial and error**
 * DNS: servers toevoegen/aanpassen in `\etc\resolv.conf`
+* if all else fails: reboot
 
 ### Raspbian (dhcpcd)
 
@@ -196,6 +218,9 @@ Wachtwoord hashen (enkel voor WPA-Enterprise): `echo -n "P@ssw0rd" | iconv -t ut
 * `nslookup google.com`: DNS OK (package `dnsutils` vereist)
 * `wget google.com`: Internet werkt
 
+## DHCP
+* met `dhclient -d <iface>` kan je testen of DHCP lukt (afsluiten met `Ctrl+C`)
+
 ## Wireless
 ### `wpa_supplicant`
 * check of de service draait: `ps aux | grep wpa`
@@ -204,8 +229,10 @@ Wachtwoord hashen (enkel voor WPA-Enterprise): `echo -n "P@ssw0rd" | iconv -t ut
   * hopelijk zie je hier in meer detail wat er mis is in configuratiebestand
   * stop met `<ctrl+C>`, fix error, retry
   * indien succesvol --> stoppen en normaal starten
-* hoewel er een `wpa_supplicant` is via `systemctl`, is dat **niet de juiste**!
-  * de juiste wordt gestart door `dhcpcd` --> herstart die en kijk of `wpa_supplicant` mee opstart
+* deze procedure kan je ook gebruiken als `wpa_cli reconfigure` lastig doet
+  * stop dan eerst `wpa_supplicant` met `wpa_cli terminate`
+  * hoewel er een `wpa_supplicant.service` is in `systemctl`, is dat **niet de juiste**!
+  * de juiste wordt gestart door `dhcpcd` --> herstart die en kijk of `wpa_supplicant` mee opstart 
 * check `wpa_cli -i wlan0 status`, `wpa_cli -i wlan0 list_networks`
 
 ### Misc
@@ -215,6 +242,69 @@ Wachtwoord hashen (enkel voor WPA-Enterprise): `echo -n "P@ssw0rd" | iconv -t ut
 * vliegtuigmodus --> staat soms plots overklaarbaar aan:
   * check met `rfkill list`
   * uitzetten met `rfkill unblock <iface>`
+
+# Checklist Linux Networking
+
+[ ] Bepaal de juiste interface `<iface>`
+- *enkel* op Raspbian kan je er vanuit gaan dat de ingebouwde NIC `eth0` is en de ingebouwde WiFi `wlan0`
+- check anders de output van `ip link` of `ip addr` voor een overzicht 
+[ ] Breng de interface up (check: `state UP` in de output van `ip link`)
+[ ] DHCP of static?
+    [ ] test of DHCP werkt met `dhclient -d <iface>`
+    [ ] verzamel nodige gegevens voor static config:
+		[ ] (host-) IP-adres 
+		[ ] subnet mask OF CIDR prefix length (/xx)
+		[ ] default gateway voor alles buiten het lokale subnet
+		[ ] DNS servers voor naamresolutie
+			- ofwel kan je het IP van de router gebruiken
+		    - ofwel de DNS-servers die de router zélf mee kreeg: check pagina 'Status' op de webinterface
+[ ] Debian of Raspbian?
+    [ ] Debian: `/etc/netwrok/interfaces` voor IP en `/etc/resolv.conf` voor DNS
+    [ ] Raspbian: **enkel** `/etc/dhcpcd/dhcpcd.conf` voor alle instellingen
+[ ] Activeer nieuwe config:
+    [ ] `systemctl restart networking.service`
+[ ] Wireless?
+  - `/etc/wpa_supplicant/wpa_supplicant.conf` voor configuratie en `wpa_cli` voor beheer
+  - gebruik wpa_passphrase om netwerkconfig te genereren voor WPA-personal:
+  ```bash
+  # sudo -i
+  $ wpa_passphrase <SSID> <passphrase> >> /etc/wpa_supplicant/wpa_supplicant.conf
+  $ logout
+  # wpa_cli -i wlan0
+  > reconfigure
+  > list_networks
+  > select_network <#>
+  > status
+  > quit
+  ```
+    - makkelijker op deze manier met `sudo -i` 
+	- let op dubbele >> in commando of je overschrijft heel het bestand!!!
+	- juiste interface niet vergeten meegeven aan `wpa_cli`
+	- voeg `priority=1` toe aan netwerkblokje om het voorrang te geven t.o.v. NMCT-RPi
+3. Wijzig de configuratie:
+   - DHCP 
+	  - testen of DHCP lukt: `dhclient -d <iface>` (afsluiten met `Ctrl+C`)
+	  - *Raspbian*: niets verder nodig, zou zo moeten werken 
+	  - *Debian*: 
+	    - voeg toe onderaan `/etc/network/interfaces`:
+			```bash
+			auto <iface>
+			iface <iface> inet dhcp
+			```
+		- herstart `networking.service` met `systemctl`
+   - Static 
+	  - *Raspbian*: 
+		 - wijzig `/etc/dhcpcd.conf`:
+```bash
+
+```		 
+			  - *Debian*: 
+				- voeg toe onderaan `/etc/network/interfaces`:
+					```bash
+					auto <iface>
+					iface <iface> inet dhcp
+					```
+				- herstart `networking.service` met `systemctl`
 
 # Firewall
 ufw [--dry-run] enable|disable|reload
