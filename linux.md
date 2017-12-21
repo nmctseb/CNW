@@ -301,10 +301,11 @@ Wachtwoord hashen (enkel voor WPA-Enterprise): `echo -n "P@ssw0rd" | iconv -t ut
   > status
   > quit
   ```
-	- makkelijker op deze manier met `sudo -i` 
-	- let op dubbele >> in commando of je overschrijft heel het bestand!!!
-	- juiste interface niet vergeten meegeven aan `wpa_cli`
-	- voeg `priority=1` toe aan netwerkblokje om het voorrang te geven t.o.v. NMCT-RPi
+  
+- makkelijker op deze manier met `sudo -i` 
+- let op dubbele >> in commando of je overschrijft heel het bestand!!!
+- juiste interface niet vergeten meegeven aan `wpa_cli`
+- voeg `priority=1` toe aan netwerkblokje om het voorrang te geven t.o.v. NMCT-RPi
 
 # Firewall
 ufw [--dry-run] enable|disable|reload
