@@ -11,11 +11,11 @@
 		- [ ] subnet mask OF CIDR prefix length (/xx)
 		- [ ] default gateway voor alles buiten het lokale subnet
 		- [ ] DNS servers voor naamresolutie
-			- ofwel kan je het IP van de router gebruiken
+			- ofwel kan je het IP van de breedbandrouter gebruiken
 		    - ofwel de DNS-servers die de router zélf mee kreeg: check pagina 'Status' op de webinterface
 3. [ ] Debian of Raspbian?
-    - [ ] Debian: `/etc/netwrok/interfaces` voor IP en `/etc/resolv.conf` voor DNS
-    - [ ] Raspbian: **enkel** `/etc/dhcpcd/dhcpcd.conf` voor alle instellingen
+    - [ ] Debian: `/etc/network/interfaces` voor IP en `/etc/resolv.conf` voor DNS
+    - [ ] Raspbian: **enkel** `/etc/dhcpcd.conf` voor alle instellingen
 4. [ ] Wijzig de configuratie:
    - DHCP 
 	  - *Raspbian*: niets verder nodig, zou zo moeten werken 

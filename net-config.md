@@ -64,7 +64,7 @@ iface <iface> inet static
 * Blijf van de config voor de loopback `lo` af!
 * Zie `man interfaces` voor meer syntax/opties
 * Nieuwe configuratie toepassen: `systemctl restart networking` of `ip link set <iface> down && ip link set <iface> up` --> **soms allebei: trial and error**
-* DNS: servers toevoegen/aanpassen in `\etc\resolv.conf`
+* DNS: servers toevoegen/aanpassen in `/etc/resolv.conf`
 * if all else fails: reboot
 
 ### Raspbian (dhcpcd)
