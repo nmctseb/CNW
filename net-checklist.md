@@ -36,7 +36,9 @@
 	  - *Debian*: voeg toe onderaan `/etc/network/interfaces`:
 		```bash
 		auto <iface>
-		iface <iface> inet statuic
+		iface <iface> inet static
+		address 10.20.30.40/24
+		gateway 10.20.30.1
 		```
 5. [ ] Activeer nieuwe config:
     - [ ] `systemctl restart networking.service`
