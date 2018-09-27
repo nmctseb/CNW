@@ -45,6 +45,23 @@
 
 ### Exercises
 
+- maak een functie die verifieert of de uitvoerende gebruiker `root` is 
+- maak een functie die verifieert dat de uitvoerende gebruiker **niet**`root` is, maar wel `sudo` kan uitvoeren
+
+- maak een alias voor het commando `sudo` die 
+  - checkt of het 1e argument nano is 
+  - zo ja, check of effectief root-rechten nodig zijn voor het gevraagde bestand
+  - zo ja, doe het gevraagde, zo nee sluit af met een foutboodschap 
+  
+- maak een script `userclone` dat 2 argumenten heeft 
+  - het eerste argument moet een bestaande gebruiker zijn, anders error&abort
+  - het tweede argument mag **geen** bestaande gebruikersnaam zijnm anders error&abort
+  - het script maakt een nieuwe user aan met deze naam 
+  - maakt hem lid van al dezelfde groepen als de bestaande gebruiker (behalve zijn persoonlijke uiteraard)
+  - stelt een tijdelijk wachtwoord 'NMCT' in, dat bij de eerste login moet veranderd worden 
+
+
+#### More 
 * <http://tldp.org/LDP/abs/html/scriptanalysis.html>
 * <https://www.shellscript.sh/exercises.html>
 
