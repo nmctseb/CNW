@@ -32,8 +32,8 @@
 ### Guides & tutorials
 
 * Pluralsight (video): [Shell Scripting with Bash](https://app.pluralsight.com/library/courses/bash-shell-scripting)
-* [Bash beginner's guide](http://mywiki.wooledge.org/BashGuide) - [new version (under construction)](http://tldp.org/LDP/Bash-Beginners-Guide/html/)
-* [The bash guide](https://guide.bash.academy/)
+* [The bash guide](http://mywiki.wooledge.org/BashGuide) - [new version (under construction)](https://guide.bash.academy/)
+* [Bash beginner's guide](http://tldp.org/LDP/Bash-Beginners-Guide/html/)
 * More at <http://wiki.bash-hackers.org/scripting/tutoriallist>
 
 ### Code style
