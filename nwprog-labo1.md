@@ -41,7 +41,7 @@
 * Pluralsight (video): [Shell Scripting with Bash](https://app.pluralsight.com/library/courses/bash-shell-scripting)
 * [Bash beginner's guide](http://tldp.org/LDP/Bash-Beginners-Guide/html/)
 * More at <http://wiki.bash-hackers.org/scripting/tutoriallist>
-* [Google's bash style guide](https://google.github.io/styleguide/shell.xml
+* [Google's bash style guide](https://google.github.io/styleguide/shell.xml)
 * [Writing robust shell scripts](https://www.davidpashley.com/articles/writing-robust-shell-scripts/#id2382181)
 * [Advanced Bash-Scripting Guide](http://tldp.org/LDP/abs/html/index.html) * classic, but not for the faint of heart!
 
