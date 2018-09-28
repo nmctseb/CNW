@@ -28,7 +28,9 @@
 * Pluralsight (video): [Introduction to the Bash Shell](https://app.pluralsight.com/library/courses/introduction-bash-shell-linux-mac-os) * *do the "learning check" to test yourself!*
 * [GNU/Linux Command-Line Tools Summary](http://tldp.org/LDP/GNU-Linux-Tools-Summary/html/GNU-Linux-Tools-Summary.html)
 
-## Syllabus (mandatory material)
+## Syllabus
+
+### Mandatory
 
 * [The bash guide](http://mywiki.wooledge.org/BashGuide) - [all on one page](http://mywiki.wooledge.org/FullBashGuide)
 * [Bash Pitfalls](http://bash.cumulonim.biz/BashPitfalls.html)
@@ -80,9 +82,8 @@
 
 ### Functions (few lines or re-usable bits)
 
-* maak een functie die verifieert of de uitvoerende gebruiker `root` is 
+* maak een functie die verifieert of de uitvoerende gebruiker `root` is
 * maak een functie die verifieert dat de uitvoerende gebruiker **niet** `root` is, maar wel `sudo` kan uitvoeren
-
 * maak een alias voor het commando `sudo` die
   * checkt of het 1e argument nano is
   * zo ja, check of effectief root-rechten nodig zijn voor het gevraagde bestand
@@ -96,7 +97,6 @@
   * het script maakt een nieuwe user aan met deze naam
   * maakt hem lid van al dezelfde groepen als de bestaande gebruiker (behalve zijn persoonlijke uiteraard)
   * stelt een tijdelijk wachtwoord 'NMCT' in, dat bij de eerste login moet veranderd worden
-
 
 ### More
 
